@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/app_bar"
-            style="@style/Widget.Shrine.Toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/shr_menu"
+            app:menu="@menu/shr_toolbar_menu"
             app:title="@string/shr_app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>
