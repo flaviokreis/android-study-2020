@@ -22,20 +22,18 @@ class ProductGridFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val products = ProductEntry.initProductEntryList(resources)
-        view.recycler_view.adapter = ProductCardRecyclerViewAdapter(products)
-    }
-
     private fun setUpRecyclerView(view: View) {
-        view.recycler_view.setHasFixedSize(true)
-        view.recycler_view.layoutManager = GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
+        view.recycler_view.apply {
+            setHasFixedSize(true)
+            GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
 
-        val largePadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing)
-        val smallPadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small)
+            val largePadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing)
+            val smallPadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small)
 
-        view.recycler_view.addItemDecoration(ProductGridItemDecoration(largePadding, smallPadding))
+            addItemDecoration(ProductGridItemDecoration(largePadding, smallPadding))
+
+            val products = ProductEntry.initProductEntryList(resources)
+            view.recycler_view.adapter = ProductCardRecyclerViewAdapter(products)
+        }
     }
 }
