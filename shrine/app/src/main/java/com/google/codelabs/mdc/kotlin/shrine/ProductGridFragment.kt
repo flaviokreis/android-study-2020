@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.codelabs.mdc.kotlin.shrine.network.ProductEntry
+import com.google.codelabs.mdc.kotlin.shrine.staggeredgridlayout.StaggeredProductCardRecyclerViewAdapter
 import kotlinx.android.synthetic.main.shr_product_grid_fragment.view.*
 
 class ProductGridFragment : Fragment() {
@@ -22,18 +23,30 @@ class ProductGridFragment : Fragment() {
         return view
     }
 
-    private fun setUpRecyclerView(view: View) {
-        view.recycler_view.apply {
-            setHasFixedSize(true)
-            GridLayoutManager(context, 2, RecyclerView.VERTICAL, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-            val largePadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing)
-            val smallPadding = resources.getDimensionPixelSize(R.dimen.shr_product_grid_spacing_small)
+        val products = ProductEntry.initProductEntryList(resources)
+        view.recycler_view.adapter = StaggeredProductCardRecyclerViewAdapter(products)
+    }
+
+    private fun setUpRecyclerView(view: View) {
+       view.recycler_view.apply {
+            setHasFixedSize(true)
+
+            val gridLayoutManager = GridLayoutManager(context, 2, RecyclerView.HORIZONTAL, false)
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+               override fun getSpanSize(position: Int): Int {
+                   return if (position % 3 == 2) 2 else 1
+               }
+            }
+
+            layoutManager = gridLayoutManager
+
+            val largePadding = resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_large)
+            val smallPadding = resources.getDimensionPixelSize(R.dimen.shr_staggered_product_grid_spacing_small)
 
             addItemDecoration(ProductGridItemDecoration(largePadding, smallPadding))
-
-            val products = ProductEntry.initProductEntryList(resources)
-            view.recycler_view.adapter = ProductCardRecyclerViewAdapter(products)
         }
     }
 }
