@@ -13,6 +13,10 @@ Contains starter code structure for the MDC-101 Kotlin codelab.
 - [Toolbar](https://material.io/develop/android/components/app-bars-top)
 - [Card](https://material.io/develop/android/components/cards)
 - NestedScrollView
+- Themes
+- Typography
+- Elevation
+- StaggeredRecyclerViewAdapter
 
 ### Code
 - [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=pt-br)
