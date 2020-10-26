@@ -12,7 +12,7 @@
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/app_bar"
-            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            style="@style/Widget.Shrine.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/shr_menu"
