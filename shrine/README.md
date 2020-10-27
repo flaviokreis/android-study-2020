@@ -18,6 +18,8 @@ Contains starter code structure for the MDC-101 Kotlin codelab.
 - Typography
 - Elevation
 - StaggeredRecyclerViewAdapter
+- Shape
+- Motion
 
 ### Code
 - [RecyclerView](https://developer.android.com/guide/topics/ui/layout/recyclerview?hl=pt-br)
