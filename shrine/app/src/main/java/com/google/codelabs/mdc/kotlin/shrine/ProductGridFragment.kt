@@ -1,5 +1,6 @@
 package com.google.codelabs.mdc.kotlin.shrine
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,11 @@ class ProductGridFragment : Fragment() {
             inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment with the ProductGrid theme
         val view = inflater.inflate(R.layout.shr_product_grid_fragment, container, false)
+
+        // Set cut corner background for API 23+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            view.product_grid.background = context?.getDrawable(R.drawable.shr_product_grid_background_shape)
+        }
 
         // Set up the RecyclerView
         setUpRecyclerView(view)
